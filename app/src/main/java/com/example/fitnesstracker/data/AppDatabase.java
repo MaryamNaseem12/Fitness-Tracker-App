@@ -30,14 +30,15 @@ public abstract class AppDatabase extends RoomDatabase {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    // Seed default goals and sample workout
+                                    // Seed default goals and sample step workouts
                                     Executors.newSingleThreadExecutor().execute(() -> {
                                         FitnessDao dao = getInstance(context).fitnessDao();
                                         dao.setDailyGoal(new DailyGoal(10000, 2200, 2500, 45));
                                         
                                         long now = System.currentTimeMillis();
-                                        dao.insertWorkout(new WorkoutLog("Morning Run", 30, 280, 4200, 3.5, now - 3600000 * 2, "Paced outdoor run"));
-                                        dao.insertWorkout(new WorkoutLog("Gym / Weights", 45, 320, 1500, 0.0, now - 3600000 * 5, "Upper body workout"));
+                                        dao.insertWorkout(new WorkoutLog("Morning Jog", 35, 320, 4600, 3.8, now - 3600000 * 3, "Paced morning outdoor jog"));
+                                        dao.insertWorkout(new WorkoutLog("Afternoon Walk", 25, 180, 2200, 1.6, now - 3600000, "Brisk walk in park"));
+                                        dao.insertWorkout(new WorkoutLog("Gym / Weights", 45, 310, 1200, 0.0, now - 3600000 * 6, "Upper body weight training"));
                                     });
                                 }
                             })
